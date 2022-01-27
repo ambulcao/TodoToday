@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 //components
 import Header from './Header';
@@ -21,10 +21,15 @@ const Home = () => {
     key: "3"
   }]
 
+  const [todos, setTodos] = useState(inicialTodo);
+
   return (
     <>
       <Header />
-      <ListItems />
+      <ListItems 
+        todos={todos}
+        setTodos={setTodos}
+      />
     </>
   )
 }
