@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 
 //components
-import Header from './Header';
-import ListItems from './ListItems';
+import Header from './Header'
+import ListItems from './ListItems'
+import InputModal from './InputModal'
 
 const Home = () => {
 
@@ -23,13 +24,19 @@ const Home = () => {
 
   const [todos, setTodos] = useState(inicialTodo);
 
+  //clear all todos
+  const handleClearTodos = () => {
+    setTodos([]);
+  }
+
   return (
     <>
-      <Header />
+      <Header handleClearTodos={handleClearTodos} />
       <ListItems 
         todos={todos}
         setTodos={setTodos}
       />
+      <InputModal />
     </>
   )
 }
