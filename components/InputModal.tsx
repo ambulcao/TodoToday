@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal } from 'react-native'
+import { Modal, TouchableWithoutFeedbackBase } from 'react-native'
 import {
   ModalButton,
   ModalContainer,
@@ -14,14 +14,39 @@ import {
 
 import { AntDesign } from '@expo/vector-icons'
 
-const InputModal = ({ modalVisible, setModalVisible, todoInputValue, setTodoInputValue }) => {
-
+const InputModal = ({ 
+  modalVisible, 
+  setModalVisible, 
+  todoInputValue, 
+  setTodoInputValue,
+  handleAddTodo,
+  handleEditTodo,
+  todoToBeEdited,
+  setTodoToBeEdited,
+  todos 
+}) => {
   const handleCloseModal = () => {
-    setModalVisible(false);
+    setModalVisible(false)
+    setTodoInputValue("")
+    setTodoToBeEdited(null);
   }
 
   const handleSubmit = () => {
-    alert("Lembrete Adicionado!");
+
+    if (!todoToBeEdited) {
+      handleAddTodo({
+        title: todoInputValue,
+        date: new Date().toUTCString(),
+        key: `${(todos[todos.lenght-1] && parseInt(todos[todos.lenght-1].key) + 1) || 1}`
+      })
+    } else {
+      handleEditTodo({
+        title: todoInputValue,
+        date: todoToBeEdited.date,
+        key: todoToBeEdited.key
+      })
+    }
+    setTodoInputValue("")
   }
 
   return (

@@ -14,7 +14,7 @@ import {
 import { SwipeListView } from 'react-native-swipe-list-view'
 import { Entypo } from '@expo/vector-icons'
 
-const ListItems = ({ todos, setTodos }) => {
+const ListItems = ({ todos, setTodos,  handleTriggerEdit}) => {
 
   //Para atualizar a lista de tarefas atualmente passada
   const [swipedRow, setSwipedRow] = useState(null);
@@ -37,7 +37,7 @@ const ListItems = ({ todos, setTodos }) => {
             <ListView
               underlayColor={colors.primary}
               onPress={() => {
-
+                handleTriggerEdit(data.item)
               }}
             >
               <>
